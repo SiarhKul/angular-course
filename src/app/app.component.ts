@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { COURSES } from '../db-data';
 import { Course } from './model/course';
@@ -19,12 +19,23 @@ export class AppComponent {
   startDate = new Date(2000,0,1)
   course = COURSES[0]
 
+  @ViewChild('cardRef1')
+  card1: CourseCardComponent;
+
+  @ViewChild('cardRef2')
+  card2: CourseCardComponent;
+
+  @ViewChild('container')
+  containerDiv: ElementRef;
+
   trackCourse(index: number, course: Course) {
     return course.id
   }
 
   courseSelected(course:Course){
-    console.log('444444444444444444', course);
+    // console.log(this.card1);
+    // console.log(this.card2);
+    console.log(this.containerDiv);
   }
 
 }

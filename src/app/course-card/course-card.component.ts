@@ -19,10 +19,10 @@ export class CourseCardComponent {
   index:number;
 
   @Output()
-  courseSelected = new EventEmitter<Course>();
+  courseSelected2 = new EventEmitter<Course>();
 
   onCourseViewed(){
-    this.courseSelected.emit(this.course);
+    this.courseSelected2.emit(this.course);
     console.log('11111111111');
   }
 
