@@ -5,9 +5,28 @@
 </div>
 
 <div>
-  <course-card [course]='coreCourse'></course-card>
-  <course-card [course]='rxjsCourse'></course-card>
-  <course-card [course]='ngrxCourse'></course-card>
+
+  <div class='demo'>
+    <div>StartDate: {{startDate | date:'MM/dd/yyyy'}}</div>
+  </div>
+
+  <div *ngFor=' let pair of course | keyvalue' >
+    {{pair.key}}
+
+  </div>
+
+
+  @for (course of courses; let last = $last; let first = $last; track trackCourse; let index = $index; let count = $count) {
+    <p>{{ count }}</p>
+    <course-card (courseSelected)='courseSelected($event)'
+                 [course]='course'
+                 [index]='index'
+                 [class.is-first]='first'
+                 [class.is-last]='last'
+    />
+  } @empty {
+    <h1>No elements found</h1>
+  }
 </div>
 
 

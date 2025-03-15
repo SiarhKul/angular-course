@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../model/course';
 
 @Component({
@@ -13,5 +13,21 @@ export class CourseCardComponent {
   })
   course: Course;
 
+  @Input({
+    required: true
+  })
+  index:number;
+
+  @Output()
+  courseSelected = new EventEmitter<Course>();
+
+  onCourseViewed(){
+    this.courseSelected.emit(this.course);
+    console.log('11111111111');
+  }
+
+  get isBeginnerCourse(): boolean {
+    return this.course.category === 'BEGINNER';
+  }
 
 }

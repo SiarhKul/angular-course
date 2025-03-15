@@ -13,7 +13,13 @@
     max-width: 400px;
     margin: 50px auto;
 }
+.is-first{
+  background: #7777;
+}
 
+.is-second{
+  background: #9999;
+}
 
 
 
