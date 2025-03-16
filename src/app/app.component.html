@@ -3,6 +3,8 @@
        src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
 </div>
 
+<button (click)='onCourseEdit()' >TEST</button>
+
 <div class='courses' #container >
 
   <div class='demo'>
@@ -26,9 +28,9 @@
                [course]='courses[1]'
                [index]='1' />
 
-<!--  @for (course of courses; let last = $last; let first = $last; track trackCourse; let index = $index; let count = $count) {
+  @for (course of courses; let last = $last; let first = $last; track trackCourse; let index = $index; let count = $count) {
     <p>{{ count }}</p>
-    <course-card (courseSelected)='courseSelected($event)'
+    <course-card (courseSelected2)='courseSelected($event)'
                  [course]='course'
                  [index]='index'
                  [class.is-first]='first'
@@ -36,7 +38,7 @@
     />
   } @empty {
     <h1>No elements found</h1>
-  }-->
+  }
 </div>
 
 

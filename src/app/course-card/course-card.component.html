@@ -7,7 +7,7 @@
 
   @if(course.iconUrl){
 
-  <img  width="300" alt="Angular Logo" [src]="course.iconUrl" >
+  <img #couseImage  width="300" alt="Angular Logo" [src]="course.iconUrl" >
   } @else {
     <h1>No image</h1>
   }
