@@ -22,9 +22,6 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('cardRef1')
   card1: CourseCardComponent;
 
-  @ViewChild('cardRef2')
-  card2: CourseCardComponent;
-
   @ViewChild('couseImage')
   couseImage: ElementRef;
 
@@ -36,16 +33,14 @@ export class AppComponent implements AfterViewInit {
   }
 
   courseSelected(course:Course){
-    // console.log(this.card1);
-    // console.log(this.card2);
     console.log(this.couseImage);
   }
 
   ngAfterViewInit(): void {
     this.cards.changes.subscribe( (card:CourseCardComponent) => {
-      console.log('0000000000',card);
+      console.log('1',card);
     })
-    console.log('11111111111111',this.cards);
+    console.log('2',this.cards);
   }
 
 

@@ -3,30 +3,40 @@
        src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
 </div>
 
-<button (click)='onCourseEdit()' >TEST</button>
 
-<div class='courses' #container >
+<div class='courses' *ngIf='courses[0] as course'>
+  <course-card
+    (courseSelected2)='courseSelected($event) '
+    [course]='course'
+    [index]='0'
+  >
+    <div class='container-image'>
+    <img width="300" alt="Angular Logo" [src]="course.iconUrl" >
+      <h1>Number of courses:4</h1>
+
+    </div>
+
+    <div class="course-description">
+      {{index}} {{course.longDescription}}
+    </div>
+
+    Edit Description <textarea></textarea>
+
+  </course-card>
+</div>
+
+<button (click)='onCourseEdit()'>TEST</button>
+
+<div class='courses' #container>
 
   <div class='demo'>
-    <div>StartDate: {{startDate | date:'MM/dd/yyyy'}}</div>
+    <div>StartDate: {{ startDate | date:'MM/dd/yyyy' }}</div>
   </div>
 
-  <div *ngFor=' let pair of course | keyvalue' >
-    {{pair.key}}
-
+  <div *ngFor=' let pair of course | keyvalue'>
+    {{ pair.key }}
   </div>
 
-  <course-card
-    #cardRef1
-    (courseSelected2)='courseSelected($event) '
-               [course]='courses[0]'
-               [index]='0' />
-
-  <course-card
-    #cardRef2
-    (courseSelected2)='courseSelected($event)'
-               [course]='courses[1]'
-               [index]='1' />
 
   @for (course of courses; let last = $last; let first = $last; track trackCourse; let index = $index; let count = $count) {
     <p>{{ count }}</p>
