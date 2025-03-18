@@ -10,14 +10,10 @@
     [course]='course'
     [index]='0'
   >
-    <div class='container-image'>
-    <img width="300" alt="Angular Logo" [src]="course.iconUrl" >
-      <h1>Number of courses:4</h1>
+    <course-image [src]='course.iconUrl' />
 
-    </div>
-
-    <div class="course-description">
-      {{index}} {{course.longDescription}}
+    <div class='course-description'>
+      {{ index }} {{ course.longDescription }}
     </div>
 
     Edit Description <textarea></textarea>

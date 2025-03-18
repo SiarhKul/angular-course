@@ -5,20 +5,17 @@
     {{course.description}}
   </div>
 
-  <ng-content select='.container-image'>
-  </ng-content>
+  <ng-content/>
 
-  <ng-content select='.course-description'>
-  </ng-content>
+  <ng-content select='.course-description'/>
 
-  <ng-content></ng-content>
+  <ng-content/>
 
 <!--  @if(course.iconUrl){
   <img #couseImage  width="300" alt="Angular Logo" [src]="course.iconUrl" >
   } @else {
     <h1>No image</h1>
   }-->
-
 
   <div class='course-category' >
     @switch (course.category){

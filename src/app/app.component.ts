@@ -3,6 +3,7 @@ import { CourseCardComponent } from './course-card/course-card.component';
 import { COURSES } from '../db-data';
 import { Course } from './model/course';
 import { CommonModule } from '@angular/common';
+import { CourseImageComponent } from './course-image/course-image.component';
 
 @Component({
   standalone: true,
@@ -11,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.css'],
   imports: [
     CourseCardComponent,
-    CommonModule
+    CommonModule,
+    CourseImageComponent,
   ],
 })
 export class AppComponent implements AfterViewInit {
