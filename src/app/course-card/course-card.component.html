@@ -1,11 +1,21 @@
 <div class="course-card"
-     [class.beginner]="isBeginnerCourse">
+     [class.beginner]="isBeginnerCourse"
+>
 
   <div class="course-title" >
     {{course.description}}
   </div>
 
-  <ng-content/>
+  <ng-template #blankImage>
+    <p class='warn'>No image is available yet.</p>
+    <img src='/assets/empty-image.png' alt='empty-tag'>
+  </ng-template>
+
+  <ng-content
+    select='course-image'
+    *ngIf='course.iconUrl';
+    else blankImage
+  />
 
   <ng-content select='.course-description'/>
 

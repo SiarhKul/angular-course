@@ -3,6 +3,21 @@
        src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
 </div>
 
+<div class='courses' *ngIf='courses[0] as course'>
+  <course-card
+    (courseSelected2)='courseSelected($event) '
+    [course]='course'
+    [index]='0'
+  >
+    <course-image [src]='course.iconUrl' />
+
+    <div class='course-description'>
+      {{ course.longDescription }}
+    </div>
+
+  </course-card>
+</div>
+
 
 <div class='courses' *ngIf='courses[0] as course'>
   <course-card
@@ -11,6 +26,8 @@
     [index]='0'
   >
     <course-image [src]='course.iconUrl' />
+    <course-image [src]='courses[1].iconUrl' />
+    <course-image [src]='courses[2].iconUrl' />
 
     <div class='course-description'>
       {{ index }} {{ course.longDescription }}
