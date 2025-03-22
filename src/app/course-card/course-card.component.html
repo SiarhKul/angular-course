@@ -1,49 +1,50 @@
-<div class="course-card"
-     [class.beginner]="isBeginnerCourse"
+<div class='course-card'
+     [class.beginner]='isBeginnerCourse'
 >
 
-  <div class="course-title" >
-    {{course.description}}
+  <div class='course-title'>
+    {{ course.description }}
   </div>
-
-  <ng-template #blankImage>
-    <p class='warn'>No image is available yet.</p>
-    <img src='/assets/empty-image.png' alt='empty-tag'>
-  </ng-template>
 
   <ng-content
     select='course-image'
-    *ngIf='course.iconUrl';
-    else blankImage
+    *ngIf='course.iconUrl; else noImage'
   />
 
-  <ng-content select='.course-description'/>
+  <ng-template #noImage>
+    <ng-container *ngTemplateOutput = 'noImageTpl'>
+    </ng-container>
+  </ng-template>
 
-  <ng-content/>
+  <ng-content select='.course-description' />
 
-<!--  @if(course.iconUrl){
-  <img #couseImage  width="300" alt="Angular Logo" [src]="course.iconUrl" >
-  } @else {
-    <h1>No image</h1>
-  }-->
+  <ng-content />
 
-  <div class='course-category' >
-    @switch (course.category){
-      @case ("BEGINNER"){
+  <!--  @if(course.iconUrl){
+    <img #couseImage  width="300" alt="Angular Logo" [src]="course.iconUrl" >
+    } @else {
+      <h1>No image</h1>
+    }-->
+
+  <div class='course-category'>
+    @switch (course.category) {
+      @case ("BEGINNER") {
         <ng-container>
-          <div class='category' >Beginner</div>
+          <div class='category'>Beginner</div>
         </ng-container>
-      }@case ("INTERMEDIATE"){
-        <div class='category' >Intermediate</div>
-      }@case ("ADVANCED"){
-        <div class='category' >Advanced</div>
+      }
+      @case ("INTERMEDIATE") {
+        <div class='category'>Intermediate</div>
+      }
+      @case ("ADVANCED") {
+        <div class='category'>Advanced</div>
       }
       @default {
-        <div class='category' >Unkonwn</div>
+        <div class='category'>Unkonwn</div>
       }
     }
 
   </div>
 
-  <button (click)='onCourseViewed()' >View Course</button>
+  <button (click)='onCourseViewed()'>View Course</button>
 </div>

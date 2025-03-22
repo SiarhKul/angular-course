@@ -1,25 +1,29 @@
 <div class='top-menu'>
-  <img class='logo'
-       src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
+  <img class='logo' src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
 </div>
 
 <div class='courses' *ngIf='courses[0] as course'>
+  <ng-template #blankImage let-courseName="description">
+    <p class="warn">{{courseName}} has no image yet.</p>
+    <img src="/assets/empty-image.png">
+  </ng-template>
+
   <course-card
-    (courseSelected2)='courseSelected($event) '
+    (courseSelected2)='courseSelected($event)'
     [course]='course'
     [index]='0'
+    [noImageTpl]='blankImage'
   >
-    <course-image [src]='course.iconUrl' />
+    <course-image [src]='course.iconUrl'></course-image>
 
     <div class='course-description'>
       {{ course.longDescription }}
     </div>
-
   </course-card>
 </div>
 
 
-<div class='courses' *ngIf='courses[0] as course'>
+<!--<div class='courses' *ngIf='courses[0] as course'>
   <course-card
     (courseSelected2)='courseSelected($event) '
     [course]='course'
@@ -62,7 +66,7 @@
   } @empty {
     <h1>No elements found</h1>
   }
-</div>
+</div>-->
 
 
 
