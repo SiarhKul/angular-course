@@ -1,57 +1,85 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList, TemplateRef,
+    AfterContentInit,
+    AfterViewInit,
+    Component,
+    ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output, QueryList, TemplateRef,
+    ViewChild
 } from '@angular/core';
-import { Course } from '../model/course';
-import { CourseImageComponent } from '../course-image/course-image.component';
+import {COURSES} from '../../db-data';
+import {Course} from '../model/course';
+import {CourseImageComponent} from '../course-image/course-image.component';
 
 @Component({
-  selector: 'course-card',
-  imports: [],
-  templateUrl: './course-card.component.html',
-  styleUrl: './course-card.component.css'
+    selector: 'course-card',
+    templateUrl: './course-card.component.html',
+    styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements AfterViewInit, AfterContentInit {
-  @Input({
-    required: true
-  })
-  course: Course;
+export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  @Input({
-    required: true
-  })
-  index:number;
+    @Input()
+    course: Course;
 
-  @Output()
-  courseSelected2 = new EventEmitter<Course>();
+    @Input()
+    noImageTpl: TemplateRef<any>;
 
-  @ContentChildren(CourseImageComponent,{read: ElementRef})
-  images:QueryList<CourseImageComponent>;
+    @Input()
+    cardIndex: number;
 
-  @Input()
-  noImageTpl: TemplateRef<any>;
+    @Output('courseSelected')
+    courseEmitter = new EventEmitter<Course>();
 
-  onCourseViewed(){
-    this.courseSelected2.emit(this.course);
-    console.log('11111111111');
-  }
 
-  get isBeginnerCourse(): boolean {
-    return this.course.category === 'BEGINNER';
-  }
+    @ContentChildren(CourseImageComponent, {read: ElementRef})
+    images: QueryList<ElementRef>;
 
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
-  }
 
-  ngAfterContentInit(): void {
-    console.log('111111111111',this.images);
-  }
+    constructor() {
+    }
+
+    ngAfterViewInit() {
+
+    }
+
+    ngAfterContentInit() {
+
+        console.log(this.images);
+
+    }
+
+
+    ngOnInit() {
+
+    }
+
+    isImageVisible() {
+        return this.course && this.course.iconUrl;
+    }
+
+    onCourseViewed() {
+
+        this.courseEmitter.emit(this.course);
+
+    }
+
+    cardClasses() {
+        if (this.course.category == 'BEGINNER') {
+            return 'beginner';
+        }
+    }
+
+    cardStyles() {
+        return {
+            'background-image': 'url(' + this.course.iconUrl + ')'
+
+        };
+    }
+
+
+
 }
