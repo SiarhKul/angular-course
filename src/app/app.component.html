@@ -17,6 +17,7 @@
   </ng-template>
 
   <course-card
+    #highlighter='hl'
     [highlighted]
     (toggleHighlight)='onToggle($event)'
     (courseSelected)='onCourseSelected($event)'
@@ -24,7 +25,7 @@
     [noImageTpl]='blankImage'
   >
     <course-image [src]='course.iconUrl'></course-image>
-    <div class='course-description'>
+    <div (dblclick)='highlighter.toggle()' class='course-description'>
       {{ course.longDescription }}
     </div>
 

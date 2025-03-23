@@ -12,9 +12,7 @@ export class HighlightedDirective {
   @Output()
   toggleHighlight = new EventEmitter();
 
-  constructor() {
-    console.log('Directive created..');
-  }
+  constructor() {console.log('Directive created..')}
 
   @HostBinding('class.highlighted')
   get cssClasses() {
@@ -49,11 +47,11 @@ export class HighlightedDirective {
            this.isHighlighted = false;
            this.toggleHighlight.emit(this.isHighlighted);
        }
-
-       toggle() {
-           this.isHighlighted = !this.isHighlighted;
-           this.toggleHighlight.emit(this.isHighlighted);
-       }*/
+*/
+  toggle() {
+    this.isHighlighted = !this.isHighlighted;
+    this.toggleHighlight.emit(this.isHighlighted);
+  }
 
 
 }
