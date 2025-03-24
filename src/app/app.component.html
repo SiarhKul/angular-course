@@ -1,43 +1,48 @@
-<div class='top-menu'>
+<div class='top-menu '>
 
   <img class='logo'
        src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
-
 </div>
 
-<ng-template [ngIf]='courses[0]' let-course>
+<div class='salmon-theme'>
 
-  <div class='courses'>
-
-    <ng-template #blankImage let-courseName='description'>
-
-      <p class='warn'>{{ courseName }} has no image yet.</p>
-
-      <img src='/assets/empty-image.png'>
-
-    </ng-template>
-
-    <course-card
-      #highlighter='hl'
-      [highlighted]
-      (toggleHighlight)='onToggle($event)'
-      (courseSelected)='onCourseSelected($event)'
-      [course]='course'
-      [noImageTpl]='blankImage'
-    >
-      <course-image
-        [src]='course.iconUrl'
-        *ngxUnless='!course.iconUrl'
-      ></course-image>
-
-
-      <div (dblclick)='highlighter.toggle()' class='course-description'>
-        {{ course.longDescription }}
-      </div>
-
-    </course-card>
-
+  <div class='course-card'>
+    TEst card
   </div>
-</ng-template>
+
+  <ng-template [ngIf]='courses[0]' let-course>
+
+    <div class='courses'>
+
+      <ng-template #blankImage let-courseName='description'>
+
+        <p class='warn'>{{ courseName }} has no image yet.</p>
+
+        <img src='/assets/empty-image.png'>
+
+      </ng-template>
+
+      <course-card
+        #highlighter='hl'
+        [highlighted]
+        (toggleHighlight)='onToggle($event)'
+        (courseSelected)='onCourseSelected($event)'
+        [course]='course'
+        [noImageTpl]='blankImage'
+      >
+        <course-image
+          [src]='course.iconUrl'
+          *ngxUnless='!course.iconUrl'
+        ></course-image>
 
 
+        <div (dblclick)='highlighter.toggle()' class='course-description'>
+          {{ course.longDescription }}
+        </div>
+
+      </course-card>
+
+    </div>
+  </ng-template>
+
+</div>
