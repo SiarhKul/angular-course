@@ -1,12 +1,8 @@
-import { Component, Inject, InjectionToken, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from './model/course';
 import { CoursesService } from './services/courses.service';
-import { HttpClient } from '@angular/common/http';
 
-function courseServiceProvider(http: HttpClient): CoursesService {
-  return new CoursesService(http);
-}
 
 @Component({
   selector: 'app-root',

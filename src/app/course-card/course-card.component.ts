@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../model/course';
-import { COURSE_SERVICE } from '../app.component';
 import { CoursesService } from '../services/courses.service';
 
 @Component({
@@ -8,6 +7,7 @@ import { CoursesService } from '../services/courses.service';
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css'],
   standalone: false,
+  // providers: [CoursesService],
 })
 export class CourseCardComponent implements OnInit {
 
@@ -21,11 +21,12 @@ export class CourseCardComponent implements OnInit {
   courseEmitter = new EventEmitter<Course>();
 
   constructor(
-    // @Inject(COURSE_SERVICE) private coursesService: CoursesService,
+    private coursesService: CoursesService,
   ) {
   }
 
   ngOnInit() {
+    console.log(this.coursesService.id);
   }
 
   onSaveClicked(description: string) {

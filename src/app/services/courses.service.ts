@@ -3,10 +3,14 @@ import { Observable } from 'rxjs';
 import { Course } from '../model/course';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+let counter = 0;
+
 @Injectable()
 export class CoursesService {
+  id: number;
 
   constructor(private http: HttpClient) {
+    this.id = counter++;
   }
 
   loadCourses(): Observable<Course[]> {
