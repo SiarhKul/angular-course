@@ -1,20 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, InjectionToken, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Course } from './model/course';
 import { CoursesService } from './services/courses.service';
+import { HttpClient } from '@angular/common/http';
+
+function courseServiceProvider(http: HttpClient): CoursesService {
+  return new CoursesService(http);
+
+}
+
+export const COURSE_SERVICE = new InjectionToken<CoursesService>('COURSE_SERVICE');
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: false,
+  providers: [{
+    provide: COURSE_SERVICE,
+    useFactory: courseServiceProvider,
+    deps: [HttpClient],
+  }],
 })
+
 export class AppComponent implements OnInit {
 
   courses$: Observable<Course[]>;
 
   constructor(
-    private coursesService: CoursesService,
+   @Inject(COURSE_SERVICE) private coursesService: CoursesService,
   ) {
 
   }
@@ -26,7 +40,7 @@ export class AppComponent implements OnInit {
 
   save(course: Course) {
     this.coursesService.saveCourse(course).subscribe(
-      ()=>console.log('Successfully Saved'),
+      () => console.log('Successfully Saved'),
     );
   }
 

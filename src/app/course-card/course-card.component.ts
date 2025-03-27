@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../model/course';
+import { COURSE_SERVICE } from '../app.component';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'course-card',
@@ -18,7 +20,9 @@ export class CourseCardComponent implements OnInit {
   @Output('courseChanged')
   courseEmitter = new EventEmitter<Course>();
 
-  constructor() {
+  constructor(
+    @Inject(COURSE_SERVICE) private coursesService: CoursesService,
+  ) {
   }
 
   ngOnInit() {
