@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Course } from './model/course';
 import { CoursesService } from './services/courses.service';
+import { COURSES } from '../db-data';
 
 
 @Component({
@@ -13,16 +13,29 @@ import { CoursesService } from './services/courses.service';
 })
 export class AppComponent implements OnInit {
 
-  courses$: Observable<Course[]>;
+  courses: Course[] = COURSES;
 
   constructor(
-   private coursesService: CoursesService,
-  ) {}
+    private coursesService: CoursesService,
+  ) {
+  }
 
   ngOnInit() {
-    console.log(this.coursesService);
-    this.courses$ = this.coursesService.loadCourses();
+
   }
+
+  editCourse() {
+
+    const cou = this.courses[0];
+    const newCourse = {
+      ...cou,
+      description: 'New course',
+    };
+
+
+    this.courses[0] = newCourse;
+  }
+
 
   save(course: Course) {
     this.coursesService.saveCourse(course).subscribe(
