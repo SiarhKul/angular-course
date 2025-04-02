@@ -25,15 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   editCourse() {
-
-    const cou = this.courses[0];
-    const newCourse = {
-      ...cou,
-      description: 'New course',
-    };
-
-
-    this.courses[0] = newCourse;
+    this.courses[1].category = 'ADVANCED';
   }
 
 
