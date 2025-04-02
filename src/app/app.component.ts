@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from './model/course';
-import { CoursesService } from './services/courses.service';
 import { COURSES } from '../db-data';
+import { CoursesService } from './courses/courses.service';
 
 
 @Component({
