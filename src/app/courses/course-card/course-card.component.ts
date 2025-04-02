@@ -76,7 +76,7 @@ export class CourseCardComponent implements OnInit,
 
   ngAfterContentChecked(): void {
 
-    this.course.description = '1111111111111111',
+    // this.course.description = '1111111111111111',
       console.log('ngAfterContentChecked', 4);
   }
 

@@ -7,17 +7,15 @@
 
 <div>
 
-  <div class='courses' *ngIf='courses[0] as course'>
+  <div class='courses' *ngFor='let course of courses | filterByCategory: "ADVANCED" '>
 
-<button (click)='editCourse()' >Test</button>
+    <button (click)='editCourse()'>Test</button>
 
     <course-card
       [course]='course'
       (courseChanged)='save($event)'
-
     >
       <course-image [src]='course.iconUrl'></course-image>
-
     </course-card>
 
   </div>
