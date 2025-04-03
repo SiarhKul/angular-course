@@ -14,6 +14,7 @@ import { CoursesService } from './courses/courses.service';
 export class AppComponent implements OnInit {
 
   courses: Course[] = COURSES;
+  coursesNumber = this.courses.length;
 
   constructor(
     private coursesService: CoursesService,

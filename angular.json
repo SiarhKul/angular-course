@@ -9,6 +9,12 @@
       "projectType": "application",
       "prefix": "",
       "schematics": {},
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/locale/messages.fr.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -63,6 +69,10 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "fr": {
+              "localize": ["fr"],
+              "outputPath": "dist/angular-course-fr/"
             }
           }
         },
@@ -74,6 +84,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-course:build:production"
+            },
+            "fr": {
+              "browserTarget": "angular-course:build:fr"
             }
           }
         },
