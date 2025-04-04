@@ -1,27 +1,24 @@
-<div class='top-menu'>
+<div class="top-menu">
 
-  <img class='logo'
-       src='https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'>
+  <img class="logo"
+       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
+
+
+
 <div>
 
-  <button (click)='editCourse()' i18n>Edit Course</button>
+      @for (course of courses; track $index; let count = $count) {
 
+        <course-card
+          [course]="course"
+          [cardIndex]="$index"
+          (courseSelected)="onCourseSelected($event)" />
 
-  <div class='courses' *ngFor='let course of courses | filterByCategory: "BEGINNER" '>
-
-    <course-card
-      [course]='course'
-      (courseChanged)='save($event)'
-    >
-      <course-image [src]='course.iconUrl'></course-image>
-    </course-card>
-
-  </div>
-
-
+      }
+  
 </div>
 
 

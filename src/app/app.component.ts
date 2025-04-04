@@ -1,38 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { Course } from './model/course';
-import { COURSES } from '../db-data';
-import { CoursesService } from './courses/courses.service';
+import {Component} from '@angular/core';
+import {CourseCardComponent} from './courses/course-card/course-card.component';
+import {COURSES} from '../db-data';
+import {Course} from './model/course';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  standalone: false,
-  providers: [CoursesService],
+  imports: [
+    CourseCardComponent
+  ],
+  standalone: true
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
 
-  courses: Course[] = COURSES;
-  coursesNumber = this.courses.length;
+    courses = [...COURSES];
 
-  constructor(
-    private coursesService: CoursesService,
-  ) {
+  performPrefetch: boolean = false;
+
+  display: boolean = false;
+
+
+  onCourseSelected(course: Course) {
+
+    console.log("App component - click event bubble", course);
+
   }
 
-  ngOnInit() {
-
-  }
-
-  editCourse() {
-    this.courses[1].category = 'ADVANCED';
+  trackCourse(index:number, course:Course) {
+    return course.id;
   }
 
 
-  save(course: Course) {
-    this.coursesService.saveCourse(course).subscribe(
-      () => console.log('Successfully Saved'),
-    );
+  onPrefetch() {
+    this.performPrefetch = true;
+  }
+
+  onDisplay() {
+    this.display = true;
   }
 }

@@ -1,94 +1,36 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { CoursesService } from '../courses.service';
-import { Course } from '../../model/course';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Course} from '../../model/course';
+import {NgIf} from '@angular/common';
+
 
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css'],
-  standalone: false,
-  // providers: [CoursesService],
+  imports: [
+    NgIf
+  ],
+  standalone: true
+
 })
-export class CourseCardComponent implements OnInit,
-  OnDestroy,
-  OnChanges,
-  AfterContentChecked,
-  AfterViewChecked,
-  AfterContentInit,
-  AfterViewInit, DoCheck {
+export class CourseCardComponent {
 
-  @Input()
-  course: Course;
+    @Input()
+    course: Course;
 
-  @Input()
-  cardIndex: number;
+    @Input({required:true})
+    cardIndex: number;
 
-  @Output('courseChanged')
-  courseEmitter = new EventEmitter<Course>();
-
-  constructor(
-    private coursesService: CoursesService,
-  ) {
-  }
-
-  ngDoCheck(): void {
-    console.log('ngDoCheck', 7);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges', 1);
-    // console.log('ngOnChanges', changes);
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit', 2);
-    // console.log('ngOnInit-id', this.coursesService.id);
-  }
-
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked', 3);
-  }
+    @Output('courseSelected')
+    courseEmitter = new EventEmitter<Course>();
 
 
-  onSaveClicked(description: string) {
-    this.courseEmitter.emit({ ...this.course, description });
+    onCourseViewed() {
 
-  }
+      console.log('Card component - button clicked ...');
+      this.courseEmitter.emit(this.course);
 
-
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy', 10);
-  }
-
-  ngAfterContentChecked(): void {
-
-    // this.course.description = '1111111111111111',
-      console.log('ngAfterContentChecked', 4);
-  }
-
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit', 5);
-  }
-
-
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit', 6);
-
-  }
+    }
 
 
 }
