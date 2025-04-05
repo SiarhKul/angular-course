@@ -5,12 +5,14 @@
 
 </div>
 
-<div style='border: 5px solid red; min-height: 200px; margin:10px' >
-  <button #display>Trigger</button>
-</div>
+<button (click)='increment()' >Increment</button>
 
+<div>{{counter()}}</div>
 
-@defer(on interaction(display); prefetch on hover) {
+<div>Course title {{course().title}}</div>
+
+<div>Courses: {{courses().toString()}}</div>
+<!--@defer() {
   <div>
     @for (course of courses; track $index; let count = $count) {
       <course-card
@@ -23,7 +25,7 @@
   <h2>Placeholder</h2>
 } @loading {
   <h2>Loading...</h2>
-}
+}-->
 
 
 

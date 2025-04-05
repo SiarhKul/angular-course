@@ -1,34 +1,47 @@
-import {Component} from '@angular/core';
-import {CourseCardComponent} from './courses/course-card/course-card.component';
-import {COURSES} from '../db-data';
-import {Course} from './model/course';
+import { Component, signal } from '@angular/core';
+import { Course } from './model/course';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [
-    CourseCardComponent
-  ],
-  standalone: true
+  imports: [],
+  standalone: true,
 })
-export class AppComponent  {
+export class AppComponent {
 
-    courses = [...COURSES];
+  // courses = [...COURSES];
 
-  performPrefetch: boolean = false;
+  performPrefetch = false;
 
-  display: boolean = false;
+  display = false;
 
+  counter = signal(0);
+  course = signal({
+    id: 1,
+    title: 'Course 1',
+  });
+
+  courses = signal(['Angular', 'React']);
+
+  increment() {
+    this.counter.set(this.counter() + 1);
+
+    this.course.set({
+      id: 1,
+      title: 'Course 2',
+    });
+    this.courses.update((courses) => [...courses, 'Vue']);
+  }
 
   onCourseSelected(course: Course) {
 
-    console.log("App component - click event bubble", course);
+    console.log('App component - click event bubble', course);
 
   }
 
-  trackCourse(index:number, course:Course) {
+  trackCourse(index: number, course: Course) {
     return course.id;
   }
 
