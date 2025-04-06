@@ -7,7 +7,10 @@
 
 <button (click)='increment()' >Increment</button>
 
-<div>{{counter()}}</div>
+<button (click)='onCleanUp()' >CleanUp</button>
+
+<div>{{counterService.counter()}}</div>
+<div>{{derivedCounter()}}</div>
 
 <div>Course title {{course().title}}</div>
 

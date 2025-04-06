@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, EffectRef, signal } from '@angular/core';
 import { Course } from './model/course';
-
+import { CounterService } from './services/counter.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +14,13 @@ export class AppComponent {
   // courses = [...COURSES];
 
   performPrefetch = false;
-
+  effectRef: EffectRef;
   display = false;
 
-  counter = signal(0);
+
+  derivedCounter = computed(() => {
+    return this.counterService.counter();
+  });
   course = signal({
     id: 1,
     title: 'Course 1',
@@ -25,8 +28,30 @@ export class AppComponent {
 
   courses = signal(['Angular', 'React']);
 
+
+  constructor(
+    public counterService: CounterService,
+  ) {
+
+    /*    this.effectRef = effect((onCleanup) => {
+
+          onCleanup(() => {
+            console.log('Cleanup occurred');
+          });
+          const counterValue = this.counter();
+          const derivedCounterValue = this.derivedCounter();
+          console.log(`${counterValue} ${derivedCounterValue}`);
+        }, {
+          manualCleanup: true,
+        });*/
+  }
+
+  onCleanUp() {
+    this.effectRef.destroy();
+  }
+
   increment() {
-    this.counter.set(this.counter() + 1);
+    this.counterService.increment();
 
     this.course.set({
       id: 1,
@@ -35,10 +60,9 @@ export class AppComponent {
     this.courses.update((courses) => [...courses, 'Vue']);
   }
 
+
   onCourseSelected(course: Course) {
-
     console.log('App component - click event bubble', course);
-
   }
 
   trackCourse(index: number, course: Course) {
