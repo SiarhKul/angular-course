@@ -18,7 +18,7 @@ export class CourseCardComponent {
     @Input()
     course: Course;
 
-    @Input({required:true})
+    @Input({required: true})
     cardIndex: number;
 
     @Output('courseSelected')
@@ -26,7 +26,6 @@ export class CourseCardComponent {
 
 
     onCourseViewed() {
-
       console.log('Card component - button clicked ...');
       this.courseEmitter.emit(this.course);
 
